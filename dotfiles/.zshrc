@@ -9,20 +9,27 @@ plugins=(
   # https://github.com/zsh-users/zsh-syntax-highlighting
   zsh-syntax-highlighting
 )
-
 source $ZSH/oh-my-zsh.sh
 
 # MySQL PATH
 export PATH=/usr/local/mysql/bin:$PATH
 
 # lazygit
+# https://github.com/jesseduffield/lazygit
 alias lg='lazygit'
 
 # starship
+# https://github.com/starship/starship
 eval "$(starship init zsh)"
 export STARSHIP_CONFIG=~/.config/starship.toml
 export STARSHIP_CACHE=~/.starship/cache
 
+# alias
+# https://github.com/sharkdp/bat
+alias cat='bat'
+
+# peco
+# https://github.com/peco/peco
 # ctrl + r
 function peco-select-history() {
   BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER")
@@ -31,7 +38,6 @@ function peco-select-history() {
 }
 zle -N peco-select-history
 bindkey '^r' peco-select-history
-
 
 # cdr peco
 if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
