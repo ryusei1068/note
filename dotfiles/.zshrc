@@ -8,6 +8,7 @@ plugins=(
   zsh-autosuggestions
   # https://github.com/zsh-users/zsh-syntax-highlighting
   zsh-syntax-highlighting
+  web-search
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -28,16 +29,16 @@ export STARSHIP_CACHE=~/.starship/cache
 # https://github.com/sharkdp/bat
 alias cat='bat'
 
-# peco
+# peco 
 # https://github.com/peco/peco
-# ctrl + r
+# ctrl + h
 function peco-select-history() {
   BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER")
   CURSOR=$#BUFFER
   zle clear-screen
 }
 zle -N peco-select-history
-bindkey '^r' peco-select-history
+bindkey '^h' peco-select-history
 
 # cdr peco
 if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
@@ -49,7 +50,7 @@ if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]
     zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
 fi
 
-# ctrl + f
+# ctrl + r
 function peco-cdr () {
     local selected_dir="$(cdr -l | sed 's/^[0-9]\+ \+//' | peco --prompt="cdr >" --query "$LBUFFER")"
     if [ -n "$selected_dir" ]; then
@@ -58,4 +59,4 @@ function peco-cdr () {
     fi
 }
 zle -N peco-cdr
-bindkey '^f' peco-cdr
+bindkey '^r' peco-cdr
