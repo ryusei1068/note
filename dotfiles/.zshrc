@@ -19,6 +19,12 @@ export PATH=/usr/local/mysql/bin:$PATH
 # https://github.com/jesseduffield/lazygit
 alias lg='lazygit'
 
+# exa
+# https://github.com/ogham/exa
+alias l='exa -l -g'
+alias exa='exa --icons -l -a'
+alias exat='exa --icons -l -T'
+
 # starship
 # https://github.com/starship/starship
 eval "$(starship init zsh)"
@@ -75,10 +81,17 @@ bindkey '^g' peco-dev
 
 # llvm
 export PATH="/usr/local/opt/llvm/bin:$PATH"
-
 export PATH="/usr/local/sbin:$PATH"
 
 export PATH=/usr/local/Cellar/dosfstools/4.2/sbin:$PATH
 
-alias exa='exa --icons -l -a'
-alias exat='exa --icons -l -T'
+# go
+export GOPATH=~/go
+export PATH=$GOPATH/bin:$PATH
+
+# docker
+alias dclean='docker rm -v $(docker ps -aq -f status=exited)'
+
+# WezTerm
+PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
+export PATH
