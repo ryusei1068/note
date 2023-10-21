@@ -9,11 +9,9 @@ plugins=(
   # https://github.com/zsh-users/zsh-syntax-highlighting
   zsh-syntax-highlighting
   web-search
+  kubectl
 )
 source $ZSH/oh-my-zsh.sh
-
-# MySQL PATH
-export PATH=/usr/local/mysql/bin:$PATH
 
 # lazygit
 # https://github.com/jesseduffield/lazygit
@@ -34,7 +32,14 @@ export STARSHIP_CACHE=~/.starship/cache
 # alias
 # https://github.com/sharkdp/bat
 alias cat='bat'
- 
+# ctrl + b
+function batdiff() {
+    git diff --name-only --relative --diff-filter=d | xargs bat --diff
+}
+zle -N batdiff
+bindkey '^b' batdiff
+
+
 # peco-
 # https://github.com/peco/peco
 # ctrl + h
@@ -79,19 +84,16 @@ function peco-dev () {
 zle -N peco-dev
 bindkey '^g' peco-dev
 
-# llvm
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-
-export PATH=/usr/local/Cellar/dosfstools/4.2/sbin:$PATH
-
-# go
-export GOPATH=~/go
-export PATH=$GOPATH/bin:$PATH
-
 # docker
 alias dclean='docker rm -v $(docker ps -aq -f status=exited)'
 
 # WezTerm
 PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 export PATH
+
+# nodebrew
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# golang
+export PATH=$PATH:/usr/local/go/bin
+
