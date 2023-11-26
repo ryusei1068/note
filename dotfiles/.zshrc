@@ -19,7 +19,7 @@ alias lg='lazygit'
 
 # exa
 # https://github.com/ogham/exa
-alias l='exa -l -g'
+alias l='exa -l -g -a'
 alias lt='exa --icons -l -T'
 
 # starship
